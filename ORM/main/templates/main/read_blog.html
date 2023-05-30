@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% block title%}read Blog{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{blog.title}}</h1>
+    <p>{{blog.contant}}</p>
+    <div class="container" style="padding-top: 3rem;" >
+        <a style="width: 14rem;" href="{% url 'main:update_blog' blog.id %}" class="btn btn-dark">Update blog</a>
+
+        <a style="width: 14rem;" href="{% url 'main:delete_blog' blog.id %}" class="btn btn-danger">deleting blog</a>
+    </div>
+    
+
+</div>
+{% endblock %}

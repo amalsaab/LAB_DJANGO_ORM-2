@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title%}update Blog{% endblock %}
+{% block body %}
+
+<div class="col mb-2">
+    <h3>update blog For: {{ blog.title }}</h3>
+    <form action="{% url 'main:update_blog' blog.id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="textFormControlInput1" class="form-label">Title</label>
+            <input type="text" class="form-control" id="textFormControlInput1" placeholder="Enter your blog's title" name="title" value="{{ blog.title }}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Write your contant</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="contant">{{ blog.contant }}</textarea>
+        </div>
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">do you want to allow us published?</label>
+
+            <select class="mb-3 form-select" aria-label="Default select example" name="is_published">
+                <option value="False" {% if blog.is_published == False %} selected {% endif %}>not published</option>
+                <option value="True" {% if blog.is_published == True %} selected {% endif %}>published</option>
+            </select>
+        </div>
+        <!-- <div class="mb-3">
+            <label for="birthday">Birthday:</label>
+            <input type="date" id="birthday" name="publish_date">
+        </div> -->
+        <div class="mb-3">
+            <input type="submit" value="Update blog" class="btn btn-dark" />
+        </div>
+    </form>
+</div>
+
+{% endblock %}
