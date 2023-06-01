@@ -5,7 +5,7 @@
 
 <div class="col mb-2">
     <h3>update blog For: {{ blog.title }}</h3>
-    <form action="{% url 'main:update_blog' blog.id %}" method="POST">
+    <form action="{% url 'main:update_blog' blog.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
             <label for="textFormControlInput1" class="form-label">Title</label>
@@ -23,10 +23,10 @@
                 <option value="True" {% if blog.is_published == True %} selected {% endif %}>published</option>
             </select>
         </div>
-        <!-- <div class="mb-3">
-            <label for="birthday">Birthday:</label>
-            <input type="date" id="birthday" name="publish_date">
-        </div> -->
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Choose Image</label>
+            <input type="file" name="image" class="form-control" />
+        </div>
         <div class="mb-3">
             <input type="submit" value="Update blog" class="btn btn-dark" />
         </div>

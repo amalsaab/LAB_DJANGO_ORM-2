@@ -14,6 +14,7 @@ def add_page(request: HttpRequest):
     if request.method == "POST":
         new_blog = Blog(title=request.POST["title"],
                         contant=request.POST["contant"], 
+                        image = request.FILES["image"],
                         is_published=request.POST["is_published"], 
                         publish_date=date.today())
         new_blog.save()
@@ -35,6 +36,8 @@ def update_blog(request: HttpRequest, blog_id):
     if request.method == "POST":
         blog.title = request.POST["title"]
         blog.contant = request.POST["contant"]
+        if 'image' in request.FILES :
+            blog.image = request.FILES["image"]
         blog.is_published = request.POST["is_published"]
         blog.save()
 
